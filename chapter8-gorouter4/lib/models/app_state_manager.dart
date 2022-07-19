@@ -11,25 +11,18 @@ class FooderlichTab {
 }
 
 class AppStateManager extends ChangeNotifier {
-  bool _initialized = false;
   bool _loggedIn = false;
   bool _onboardingComplete = false;
   int _selectedTab = FooderlichTab.explore;
   final _appCache = AppCache();
 
-  bool get isInitialized => _initialized;
   bool get isLoggedIn => _loggedIn;
   bool get isOnboardingComplete => _onboardingComplete;
   int get getSelectedTab => _selectedTab;
 
-  void initializeApp() async {
+  Future<void> initializeApp() async {
     _loggedIn = await _appCache.isUserLoggedIn();
     _onboardingComplete = await _appCache.didCompleteOnboarding();
-
-    Timer(const Duration(milliseconds: 2000), () {
-      _initialized = true;
-      notifyListeners();
-    });
   }
 
   void login(String username, String password) async {
@@ -50,10 +43,8 @@ class AppStateManager extends ChangeNotifier {
   }
 
   void logout() async {
-    _initialized = false;
     await _appCache.invalidate();
-
-    initializeApp();
+    await initializeApp();
     notifyListeners();
   }
 }

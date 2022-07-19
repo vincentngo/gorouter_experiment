@@ -59,12 +59,12 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
 
               if (widget.isUpdating) {
                 widget.onUpdate(groceryItem);
-                context.goNamed('home');
-                // context.pop();
+                // context.goNamed('home');
+                context.pop();
               } else {
                 widget.onCreate(groceryItem);
-                context.goNamed('home');
-                // context.pop();
+                // context.goNamed('home');
+                context.pop();
               }
             },
           )
