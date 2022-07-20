@@ -52,6 +52,7 @@ class _FooderlichState extends State<Fooderlich> {
             debugShowCheckedModeBanner: false,
             theme: theme,
             title: 'Fooderlich',
+            backButtonDispatcher: RootBackButtonDispatcher(),
             routeInformationParser: router.routeInformationParser,
             routeInformationProvider: router.routeInformationProvider,
             routerDelegate: router.routerDelegate,
